@@ -43,10 +43,20 @@ int randindex_cherry_y;
 int fr_cherry_middle_x;
 int fr_cherry_middle_y;
 
+int fruit_strawberry_position_x[15]={42,82,122,162,202,242,282,322,362,402,442,482,522,562,602};
+int fruit_strawberry_position_y[15]={42,82,122,162,202,242,282,322,362,402,442,482,522,562,602};
+int fruit_strawberry_random_position_x;
+int fruit_strawberry_random_position_y;
+int randindex_strawberry_x;
+int randindex_strawberry_y;
+int fr_strawberry_middle_x;
+int fr_strawberry_middle_y;
+
+
 int fruit_width;
 int fruit_height;
 
-int checkDistance;
+
 
 
 //--------------------------------------------------------------
@@ -79,6 +89,12 @@ void testApp::setup(){
 	 randindex_cherry_y = rand() % 15;
 	fruit_cherry_random_position_y = fruit_cherry_position_y[randindex_cherry_y];
 
+	 randindex_strawberry_x = rand() % 15;
+	fruit_strawberry_random_position_x = fruit_strawberry_position_x[randindex_strawberry_x];
+	 randindex_strawberry_y = rand() % 15;
+	fruit_strawberry_random_position_y = fruit_strawberry_position_y[randindex_strawberry_y];
+
+
 
 
 	fr_apple_middle_x=fruit_apple_random_position_x+20;
@@ -92,6 +108,9 @@ void testApp::setup(){
 
 	fr_banana_middle_x=fruit_banana_random_position_x+20;
 	fr_banana_middle_y=fruit_banana_random_position_y+20;
+
+	fr_strawberry_middle_x=fruit_strawberry_random_position_x+20;
+	fr_strawberry_middle_y=fruit_strawberry_random_position_y+20;
 
 
 
@@ -166,6 +185,11 @@ void testApp::setup(){
 	}
 	
 	if(!fruit_cherry.loadImage("images/cherry.png"))
+	{
+		ofLog(OF_LOG_ERROR,"Error while loading image");
+	}
+
+	if(!fruit_strawberry.loadImage("images/strawberry.png"))
 	{
 		ofLog(OF_LOG_ERROR,"Error while loading image");
 	}
@@ -277,6 +301,7 @@ fruit_apple.draw(fruit_apple_random_position_x,fruit_apple_random_position_y,fru
 fruit_banana.draw(fruit_banana_random_position_x,fruit_banana_random_position_y,fruit_width,fruit_height);
 fruit_pear.draw(fruit_pear_random_position_x,fruit_pear_random_position_y,fruit_width,fruit_height);
 fruit_cherry.draw(fruit_cherry_random_position_x,fruit_cherry_random_position_y,fruit_width,fruit_height);
+fruit_strawberry.draw(fruit_strawberry_random_position_x,fruit_cherry_random_position_y,fruit_width,fruit_height);
 
 }
 
@@ -337,7 +362,10 @@ void testApp::keyPressed(int key)
 			mySoundMovePacman.getIsPlaying();
 
 	}
-	if((((pacman_position_x - fr_apple_middle_x)<=30) && ((pacman_position_y - fr_apple_middle_y)<=30) && ((pacman_position_x - fr_apple_middle_x)>= -30) && ((pacman_position_y - fr_apple_middle_y)>= -30)) || (((pacman_position_x - fr_pear_middle_x)<=30) && ((pacman_position_y - fr_pear_middle_y)<=30) && ((pacman_position_x - fr_pear_middle_x)>= -30) && ((pacman_position_y - fr_pear_middle_y)>= -30)) || (((pacman_position_x - fr_cherry_middle_x)<=30) && ((pacman_position_y - fr_cherry_middle_y)<=30) && ((pacman_position_x - fr_cherry_middle_x)>= -30) && ((pacman_position_y - fr_cherry_middle_y)>= -30)) || (((pacman_position_x - fr_banana_middle_x)<=30) && ((pacman_position_y - fr_banana_middle_y)<=30) && ((pacman_position_x - fr_banana_middle_x)>= -30) && ((pacman_position_y - fr_banana_middle_y)>= -30)) )
+
+
+//---- sounds made by pacman while eating fruits-------------------------------------------------	
+	if((((pacman_position_x - fr_apple_middle_x)<=30) && ((pacman_position_y - fr_apple_middle_y)<=30) && ((pacman_position_x - fr_apple_middle_x)>= -30) && ((pacman_position_y - fr_apple_middle_y)>= -30)) || (((pacman_position_x - fr_pear_middle_x)<=30) && ((pacman_position_y - fr_pear_middle_y)<=30) && ((pacman_position_x - fr_pear_middle_x)>= -30) && ((pacman_position_y - fr_pear_middle_y)>= -30)) || (((pacman_position_x - fr_cherry_middle_x)<=30) && ((pacman_position_y - fr_cherry_middle_y)<=30) && ((pacman_position_x - fr_cherry_middle_x)>= -30) && ((pacman_position_y - fr_cherry_middle_y)>= -30)) || (((pacman_position_x - fr_banana_middle_x)<=30) && ((pacman_position_y - fr_banana_middle_y)<=30) && ((pacman_position_x - fr_banana_middle_x)>= -30) && ((pacman_position_y - fr_banana_middle_y)>= -30)) || (((pacman_position_x - fr_strawberry_middle_x)<=30) && ((pacman_position_y - fr_strawberry_middle_y)<=30) && ((pacman_position_x - fr_strawberry_middle_x)>= -30) && ((pacman_position_y - fr_strawberry_middle_y)>= -30)))
 	{
             mySoundCollideFruit.getIsPlaying();
             mySoundCollideFruit.setMultiPlay(false);
@@ -346,6 +374,29 @@ void testApp::keyPressed(int key)
             mySoundCollideFruit.setSpeed(1.0f);
             mySoundCollideFruit.getSpeed();
             mySoundCollideFruit.getIsPlaying();
+
+            if(((pacman_position_x - fr_apple_middle_x)<=30) && ((pacman_position_y - fr_apple_middle_y)<=30) && ((pacman_position_x - fr_apple_middle_x)>= -30) && ((pacman_position_y - fr_apple_middle_y)>= -30))
+            {
+            	fruit_apple.clear();
+            }
+            if(((pacman_position_x - fr_pear_middle_x)<=30) && ((pacman_position_y - fr_pear_middle_y)<=30) && ((pacman_position_x - fr_pear_middle_x)>= -30) && ((pacman_position_y - fr_pear_middle_y)>= -30))
+            {
+            	fruit_pear.clear();
+            }
+            if(((pacman_position_x - fr_banana_middle_x)<=30) && ((pacman_position_y - fr_banana_middle_y)<=30) && ((pacman_position_x - fr_banana_middle_x)>= -30) && ((pacman_position_y - fr_banana_middle_y)>= -30))
+            {
+            	fruit_banana.clear();
+            }
+            if(((pacman_position_x - fr_cherry_middle_x)<=30) && ((pacman_position_y - fr_cherry_middle_y)<=30) && ((pacman_position_x - fr_cherry_middle_x)>= -30) && ((pacman_position_y - fr_cherry_middle_y)>= -30))
+            {
+            	fruit_cherry.clear();
+            }
+            if(((pacman_position_x - fr_strawberry_middle_x)<=30) && ((pacman_position_y - fr_strawberry_middle_y)<=30) && ((pacman_position_x - fr_strawberry_middle_x)>= -30) && ((pacman_position_y - fr_strawberry_middle_y)>= -30))
+            {
+            	fruit_strawberry.clear();
+            }
+
+
 	}
 
 	 if((key == 'w') || (key == 'W'))

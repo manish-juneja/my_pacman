@@ -9,9 +9,18 @@ class testApp : public ofBaseApp{
 	public:
 
 		ofSoundPlayer mySoundMovePacman;
-		ofSoundPlayer mySoundCollide;
+		ofSoundPlayer mySoundCollidePacman;
 		ofSoundPlayer mySoundStartGame;
+		ofSoundPlayer mySoundCollideFruit;
+
 		     ofImage  my_img;
+			 ofImage  fruit_apple;
+			 ofImage fruit_banana;
+			 ofImage fruit_pear;
+			 ofImage fruit_cherry;
+			 ofImage fruit_strawberry;
+			 
+			 
 
 
 		void setup();
