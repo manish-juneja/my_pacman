@@ -101,36 +101,6 @@ void testApp::setup(){
 	fruit_width=40;
 	fruit_height=40;
     
-    
-	//-------randomizing the fruit positions------------------
-    /*	 randindex_apple_x = rand() % 14; //---taking a random number from 0-15 and storing it in randindex_apple_x----------
-     fruit_apple_random_position_x = fruit_apple_position_x[randindex_apple_x];
-	 randindex_apple_y = rand() % 14;
-     fruit_apple_random_position_y = fruit_apple_position_y[randindex_apple_y];
-     
-     
-	 randindex_banana_x = rand() % 14;
-     fruit_banana_random_position_x = fruit_banana_position_x[randindex_banana_x];
-	 randindex_banana_y = rand() % 14;
-     fruit_banana_random_position_y = fruit_banana_position_y[randindex_banana_y];
-     
-     
-     randindex_pear_x = rand() % 14;
-     fruit_pear_random_position_x = fruit_pear_position_x[randindex_pear_x];
-	 randindex_pear_y = rand() % 14;
-     fruit_pear_random_position_y = fruit_pear_position_y[randindex_pear_y];
-     
-     randindex_cherry_x = rand() % 14;
-     fruit_cherry_random_position_x = fruit_cherry_position_x[randindex_cherry_x];
-	 randindex_cherry_y = rand() % 14;
-     fruit_cherry_random_position_y = fruit_cherry_position_y[randindex_cherry_y];
-     
-	 randindex_strawberry_x = rand() % 14;
-     fruit_strawberry_random_position_x = fruit_strawberry_position_x[randindex_strawberry_x];
-	 randindex_strawberry_y = rand() % 14;
-     fruit_strawberry_random_position_y = fruit_strawberry_position_y[randindex_strawberry_y];
-     */
-    
     randindex_apple_x = rand() % 143; //---taking a random number from 0-153 and storing it in randindex_apple_x----------
 	fruit_apple_random_position_x = allFruitPosition[randindex_apple_x][0];
 	fruit_apple_random_position_y = allFruitPosition[randindex_apple_x][1];
