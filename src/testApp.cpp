@@ -212,7 +212,7 @@ void testApp::setup(){
     
 	my_img.draw(500,227,ofGetWidth(),ofGetHeight());
     
-	Sleep(5000);
+	sleep(5);
     
 	
 	
@@ -482,7 +482,7 @@ void testApp::keyPressed(int key)
             mySoundCollidePacman.getIsPlaying();// returns true if sound is playing
             
             //------wait for 1900 microseconds for the sound to play and then reposition pacman on required (x,y)------------
-            Sleep(1900);
+            sleep(1.9);
             
             pacman_position_x = 400;
             pacman_position_y = 500;
@@ -494,7 +494,7 @@ void testApp::keyPressed(int key)
             if(CounterForGameOver == 3)
             {
                 cout<<"gameover";
-                Sleep(1500);
+                sleep(1.5);
                 abort();
             }
         }
