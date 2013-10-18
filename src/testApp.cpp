@@ -101,35 +101,7 @@ void testApp::setup(){
 	fruit_width=40;
 	fruit_height=40;
     
-    
-	//-------randomizing the fruit positions------------------
-    /*	 randindex_apple_x = rand() % 14; //---taking a random number from 0-15 and storing it in randindex_apple_x----------
-     fruit_apple_random_position_x = fruit_apple_position_x[randindex_apple_x];
-	 randindex_apple_y = rand() % 14;
-     fruit_apple_random_position_y = fruit_apple_position_y[randindex_apple_y];
-     
-     
-	 randindex_banana_x = rand() % 14;
-     fruit_banana_random_position_x = fruit_banana_position_x[randindex_banana_x];
-	 randindex_banana_y = rand() % 14;
-     fruit_banana_random_position_y = fruit_banana_position_y[randindex_banana_y];
-     
-     
-     randindex_pear_x = rand() % 14;
-     fruit_pear_random_position_x = fruit_pear_position_x[randindex_pear_x];
-	 randindex_pear_y = rand() % 14;
-     fruit_pear_random_position_y = fruit_pear_position_y[randindex_pear_y];
-     
-     randindex_cherry_x = rand() % 14;
-     fruit_cherry_random_position_x = fruit_cherry_position_x[randindex_cherry_x];
-	 randindex_cherry_y = rand() % 14;
-     fruit_cherry_random_position_y = fruit_cherry_position_y[randindex_cherry_y];
-     
-	 randindex_strawberry_x = rand() % 14;
-     fruit_strawberry_random_position_x = fruit_strawberry_position_x[randindex_strawberry_x];
-	 randindex_strawberry_y = rand() % 14;
-     fruit_strawberry_random_position_y = fruit_strawberry_position_y[randindex_strawberry_y];
-     */
+  
     
     randindex_apple_x = rand() % 143; //---taking a random number from 0-153 and storing it in randindex_apple_x----------
 	fruit_apple_random_position_x = allFruitPosition[randindex_apple_x][0];
@@ -215,13 +187,6 @@ void testApp::setup(){
 	sleep(5);
     
 	
-	
-	/*if((pacman_position_x == enemy_position_x+12.5) || ( pacman_position_y+7.5 == enemy_position_y) || (pacman_position_y-7.5 == enemy_position_y+25)  || (pacman_position_x -7.5 == enemy_position_x+25) || (pacman_position_y == enemy_position_y+12.5) || (pacman_position_x+7.5 == enemy_position_x) || ( pacman_position_y ==enemy_position_y+12.5)  )
-     {
-     pacman_position_x = 400;
-     pacman_position_y = 500;
-     }
-     */
     
 	ofBackground(0,0,0);
 	ofEnableSmoothing();
@@ -260,6 +225,26 @@ void testApp::setup(){
 //--------------------------------------------------------------
 void testApp::update(){
     
+    if(((pacman_position_x - fr_apple_middle_x)<=30) && ((pacman_position_y - fr_apple_middle_y)<=30) && ((pacman_position_x - fr_apple_middle_x)>= -30) && ((pacman_position_y - fr_apple_middle_y)>= -30))
+    {
+        fruit_apple.clear();
+    }
+    if(((pacman_position_x - fr_pear_middle_x)<=30) && ((pacman_position_y - fr_pear_middle_y)<=30) && ((pacman_position_x - fr_pear_middle_x)>= -30) && ((pacman_position_y - fr_pear_middle_y)>= -30))
+    {
+        fruit_pear.clear();
+    }
+    if(((pacman_position_x - fr_banana_middle_x)<=30) && ((pacman_position_y - fr_banana_middle_y)<=30) && ((pacman_position_x - fr_banana_middle_x)>= -30) && ((pacman_position_y - fr_banana_middle_y)>= -30))
+    {
+        fruit_banana.clear();
+    }
+    if(((pacman_position_x - fr_cherry_middle_x)<=30) && ((pacman_position_y - fr_cherry_middle_y)<=30) && ((pacman_position_x - fr_cherry_middle_x)>= -30) && ((pacman_position_y - fr_cherry_middle_y)>= -30))
+    {
+        fruit_cherry.clear();
+    }
+    if(((pacman_position_x - fr_strawberry_middle_x)<=30) && ((pacman_position_y - fr_strawberry_middle_y)<=30) && ((pacman_position_x - fr_strawberry_middle_x)>= -30) && ((pacman_position_y - fr_strawberry_middle_y)>= -30))
+    {
+        fruit_strawberry.clear();
+    }
 }
 
 //--------------------------------------------------------------
@@ -523,7 +508,7 @@ void testApp::keyPressed(int key)
         mySoundCollideFruit.setSpeed(1.0f);
         mySoundCollideFruit.getSpeed();
         mySoundCollideFruit.getIsPlaying();
-        
+    }
         if(((pacman_position_x - fr_apple_middle_x)<=30) && ((pacman_position_y - fr_apple_middle_y)<=30) && ((pacman_position_x - fr_apple_middle_x)>= -30) && ((pacman_position_y - fr_apple_middle_y)>= -30))
         {
             fruit_apple.clear();
@@ -546,7 +531,7 @@ void testApp::keyPressed(int key)
         }
         
         
-	}
+	
     
     if((key == 'w') || (key == 'W'))
     {
