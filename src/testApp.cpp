@@ -1,5 +1,6 @@
 #include "testApp.h"
 
+
 int allFruitPosition[143][2] = { {40,40},{80,40},{120,40},{160,40},{200,40},{240,40},{280,40},{320,40},{360,40},{400,40},{440,40},
     {480,40},{520,40},{560,40},{600,40},{640,40},{680,40},{720,40},
     
@@ -34,14 +35,61 @@ int allFruitPosition[143][2] = { {40,40},{80,40},{120,40},{160,40},{200,40},{240
     
 };
 
+int allWallPositions[][2] = {
+    
+    {0,0},{40,0},{80,0},{120,0},{160,0},{200,0},{240,0},{280,0},{320,0},{360,0},{400,0},{440,0},{480,0},{520,0},{560,0},{600,0},{640,0},{680,0},{720,0},{760,0},
+    
+    {0,40},{760,40},
+    
+    {0,80},{120,80},{240,80},{320,80},{360,80},{400,80},{440,80},{520,80},{640,80},{760,80},
+    
+    {0,120},{80,120},{120,120},{160,120},{240,120},{360,120},{400,120},{520,120},{600,120},{640,120},{680,120},{760,120},
+    
+    {0,160},{240,160},{280,160},{360,160},{400,160},{480,160},{520,160},{760,160},
+    
+    {0,200},{40,200},{80,200},{120,200},{160,200},{600,200},{640,200},{680,200},{720,200},{760,200},
+    
+    {0,240},{40,240},{80,240},{120,240},{160,240},{240,240},{320,240},{360,240},{440,240},{520,240},{600,240},{640,240},{680,240},{720,240},{760,240},
+    
+    {320,280},{440,280},
+    
+    {0,320},{40,320},{80,320},{120,320},{160,320},{240,320},{320,320},{360,320},{400,320},{440,320},{520,320},{600,320},{640,320},{680,320},{720,320},{760,320},
+    
+    {0,360},{40,360},{80,360},{120,360},{160,360},{600,360},{640,360},{680,360},{720,360},{760,360},
+    
+    {0,400},{240,400},{280,400},{360,400},{400,400},{480,400},{520,400},{760,400},
+    
+    {0,440},{80,440},{120,440},{160,440},{240,440},{360,440},{400,440},{520,440},{600,440},{640,440},{680,440},{760,440},
+    
+    {0,480},{120,480},{240,480},{320,480},{360,480},{400,480},{440,480},{520,480},{640,480},{760,480},
+    
+    {0,520},{760,520},
+    
+    {0,560},{40,560},{80,560},{120,560},{160,560},{200,560},{240,560},{280,560},{320,560},{360,560},{400,560},{440,560},{480,560},{520,560},{560,560},{600,560},{640,560},{680,560},{720,560},{760,560}
+    
+    
+};
+
 float pacman_position_x;
 float pacman_position_y;
 float pacman_radius;
+
+float coordinate_y_up;
+float coordinate_y_down;
+float coordinate_x_left;
+float coordinate_x_right;
+
 float enemy_position_x;
 float enemy_position_y;
 float enemy_position_x_middle;
 float enemy_position_y_middle;
+
 int CounterForGameOver;
+
+int x_checker_1;
+int x_checker_2;
+int y_checker_1;
+int y_checker_2;
 
 int fruit_apple_position_x[15]={82,122,162,202,242,282,322,362,402,442,482,522,562,602};
 int fruit_apple_position_y[15]={82,122,162,202,242,282,322,362,402,442,482,522,562,602};
@@ -101,6 +149,36 @@ void testApp::setup(){
 	fruit_width=40;
 	fruit_height=40;
     
+    
+	//-------randomizing the fruit positions------------------
+    /*	 randindex_apple_x = rand() % 14; //---taking a random number from 0-15 and storing it in randindex_apple_x----------
+     fruit_apple_random_position_x = fruit_apple_position_x[randindex_apple_x];
+	 randindex_apple_y = rand() % 14;
+     fruit_apple_random_position_y = fruit_apple_position_y[randindex_apple_y];
+     
+     
+	 randindex_banana_x = rand() % 14;
+     fruit_banana_random_position_x = fruit_banana_position_x[randindex_banana_x];
+	 randindex_banana_y = rand() % 14;
+     fruit_banana_random_position_y = fruit_banana_position_y[randindex_banana_y];
+     
+     
+     randindex_pear_x = rand() % 14;
+     fruit_pear_random_position_x = fruit_pear_position_x[randindex_pear_x];
+	 randindex_pear_y = rand() % 14;
+     fruit_pear_random_position_y = fruit_pear_position_y[randindex_pear_y];
+     
+     randindex_cherry_x = rand() % 14;
+     fruit_cherry_random_position_x = fruit_cherry_position_x[randindex_cherry_x];
+	 randindex_cherry_y = rand() % 14;
+     fruit_cherry_random_position_y = fruit_cherry_position_y[randindex_cherry_y];
+     
+	 randindex_strawberry_x = rand() % 14;
+     fruit_strawberry_random_position_x = fruit_strawberry_position_x[randindex_strawberry_x];
+	 randindex_strawberry_y = rand() % 14;
+     fruit_strawberry_random_position_y = fruit_strawberry_position_y[randindex_strawberry_y];
+     */
+    
     randindex_apple_x = rand() % 143; //---taking a random number from 0-153 and storing it in randindex_apple_x----------
 	fruit_apple_random_position_x = allFruitPosition[randindex_apple_x][0];
 	fruit_apple_random_position_y = allFruitPosition[randindex_apple_x][1];
@@ -156,9 +234,15 @@ void testApp::setup(){
 	mySoundCollideFruit.loadSound("sounds/pacman_eatfruit.mp3");
 	mySoundCollideFruit.setMultiPlay(false);
     
-	pacman_position_x = 400;
-	pacman_position_y = 500;
-	pacman_radius = 15;
+	pacman_position_x = 420;
+	pacman_position_y = 540;
+	pacman_radius = 20;
+    
+    coordinate_x_left = pacman_position_x - 40;
+    coordinate_x_right = pacman_position_x  + 40;
+    coordinate_y_down = pacman_position_y + 40;
+    coordinate_y_up = pacman_position_y -40;
+    
     enemy_position_x = 375;
 	enemy_position_y = 175;
 	enemy_position_x_middle = enemy_position_x + 15;
@@ -180,7 +264,8 @@ void testApp::setup(){
         ofLog(OF_LOG_ERROR,"Errorwhileloadingimage");
 	}
     
-	my_img.draw(500,227,ofGetWidth(),ofGetHeight());// this is not working
+    
+	my_img.draw(500,227,800,600);// this is not working
     
 	sleep(5);
     
@@ -252,11 +337,17 @@ void testApp::update(){
     }
     
     
+    coordinate_x_left = pacman_position_x - 40;
+    coordinate_x_right = pacman_position_x  + 40;
+    coordinate_y_down = pacman_position_y + 40;
+    coordinate_y_up = pacman_position_y -40;
     
 }
 
 //--------------------------------------------------------------
 void testApp::draw(){
+    
+    
     
     //MAKING THE ARENA FOR PLAY !---------------------------------------
 	
@@ -419,7 +510,6 @@ void testApp::draw(){
 	ofFill();
 	ofCircle(pacman_position_x, pacman_position_y+15 ,1);
 	
-	ofSetColor(127,255,0);
 	ofFill();
 	ofCircle(pacman_position_x, pacman_position_y-15 ,1);
 	
@@ -452,6 +542,7 @@ void testApp::keyPressed(int key)
 {
     
     if((key == 'w') || (key == 'W') || (key == 's') || (key == 'S') || (key == 'A') || (key == 'a') || (key == 'd') || (key == 'D'))
+		
     {
 		/*	if((pacman_position_x == enemy_position_x+12.5) || ( pacman_position_y+7.5 == enemy_position_y) || (pacman_position_y-7.5 == enemy_position_y+25)  || (pacman_position_x -7.5 == enemy_position_x+25) || (pacman_position_y == enemy_position_y+12.5) || (pacman_position_x+7.5 == enemy_position_x) || ( pacman_position_y ==enemy_position_y+12.5)  )
          {
@@ -461,8 +552,11 @@ void testApp::keyPressed(int key)
          
          */		//--- loop for simple collision detetction---------------------
         
-        if(((pacman_position_x+15 == enemy_position_x) && ( pacman_position_y == enemy_position_y+15)) || ((pacman_position_x-15 == enemy_position_x+30) && ( pacman_position_y == enemy_position_y+15)) || ((pacman_position_x == enemy_position_x+15) && ( pacman_position_y-15 == enemy_position_y+30)) || ((pacman_position_x == enemy_position_x+15) && ( pacman_position_y+15 == enemy_position_y))   )
+        // if(((pacman_position_x+15 == enemy_position_x) && ( pacman_position_y == enemy_position_y+15)) || ((pacman_position_x-15 == enemy_position_x+30) && ( pacman_position_y == enemy_position_y+15)) || ((pacman_position_x == enemy_position_x+15) && ( pacman_position_y-15 == enemy_position_y+30)) || ((pacman_position_x == enemy_position_x+15) && ( pacman_position_y+15 == enemy_position_y))   )
+        if(((pacman_position_x - enemy_position_x_middle)<=30) && ((pacman_position_y - enemy_position_y_middle)<=30) && ((pacman_position_x - enemy_position_x_middle)>= -30) && ((pacman_position_y - enemy_position_y_middle)>= -30))
+            
         {
+            
             // if collision takes place play this sound ------
             
             mySoundCollidePacman.getIsPlaying();//Returns false
@@ -477,8 +571,8 @@ void testApp::keyPressed(int key)
             //------wait for 1900 microseconds for the sound to play and then reposition pacman on required (x,y)------------
             sleep(1.9);
             
-            pacman_position_x = 400;
-            pacman_position_y = 500;
+            pacman_position_x = 420;
+            pacman_position_y = 540;
             
             //adding counter for game over -------------
             
@@ -545,13 +639,32 @@ void testApp::keyPressed(int key)
     if((key == 'w') || (key == 'W'))
     {
         
-        if(pacman_position_y < -7.5)
+        if(pacman_position_y < -40)
         {
-            pacman_position_y=pacman_position_y+607.5;
+            pacman_position_y=pacman_position_y+640;
         }
         
-        else	{
-            pacman_position_y = pacman_position_y - 5;
+        else
+        {
+            
+            for (y_checker_1 = 0; y_checker_1 < 157; y_checker_1++)
+            {
+                
+                if(allWallPositions[y_checker_1][1] + 20 != coordinate_y_up)
+                {
+                    pacman_position_y = pacman_position_y -40;
+                    
+                }
+                /*else
+                 {
+                 pacman_position_y = pacman_position_y;
+                 
+                 
+                 }*/
+                
+            }
+            
+            
         }
         
         
@@ -560,13 +673,14 @@ void testApp::keyPressed(int key)
     if((key =='s') || (key =='S')) // 's' key
     {
         
-        if(pacman_position_y > 607.5)
+        if(pacman_position_y > 640)
         {
-            pacman_position_y = pacman_position_y -607.5;
+            pacman_position_y = pacman_position_y -640;
         }
         else
         {
-            pacman_position_y = pacman_position_y + 5;
+            
+            pacman_position_y = pacman_position_y + 40;
         }
         
 		
@@ -574,25 +688,25 @@ void testApp::keyPressed(int key)
     
     if((key =='d') || (key =='D')) // 'd' key
     {
-        if(pacman_position_x > 807.5)
+        if(pacman_position_x > 810)
         {
-            pacman_position_x = pacman_position_x -807.5;
+            pacman_position_x = pacman_position_x -840;
         }
         else
         {
-            pacman_position_x = pacman_position_x + 5;
+            pacman_position_x = pacman_position_x + 40;
         }
     }
     
     if((key=='a') || (key == 'A')) // 'a' key
     {
-        if(pacman_position_x < -7.5)
+        if(pacman_position_x < -40)
         {
-            pacman_position_x = pacman_position_x + 807.5;
+            pacman_position_x = pacman_position_x + 840;
         }
         else
         {
-            pacman_position_x = pacman_position_x - 5;
+            pacman_position_x = pacman_position_x - 40;
         }
         
     }
