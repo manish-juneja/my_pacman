@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 //for check2
+=======
+//
+//
+>>>>>>> master
 
 #include "testApp.h"
 
@@ -669,6 +674,11 @@ void testApp::keyPressed(int key)
             
         }
         
+        
+    } // everything inside this loop not working !!
+    
+    if(int nn =0)
+    {
         
     }
     
