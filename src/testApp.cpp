@@ -1,9 +1,8 @@
-<<<<<<< HEAD
+
 //for check2
-=======
 //
 //
->>>>>>> master
+
 
 #include "testApp.h"
 
