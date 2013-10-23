@@ -668,6 +668,11 @@ void testApp::keyPressed(int key)
         }
         
         
+    } // everything inside this loop not working !!
+    
+    if(int nn =0)
+    {
+        
     }
     
     if((key =='s') || (key =='S')) // 's' key
