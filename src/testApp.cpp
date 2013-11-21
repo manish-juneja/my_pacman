@@ -1,6 +1,6 @@
 #include "testApp.h"
 
-//check
+
 // declaring the vector that might do the job of doing the dynamic array but not used till now ........
 
 vector<vector<vector<float> > > phantom_energy (157, vector<vector<float> > (20, vector<float> (2)));
@@ -44,7 +44,7 @@ int allFruitPosition[143][2] = {{40,40},{80,40},{120,40},{160,40},{200,40},{240,
 
 int allWallPositions [157][2] = {
     
-    {0,0},{40,0},{80,0},{120,0},{160,0},{200,0},{240,0},{280,0},{320,0},{360,0},{400,0},{440,0},{480,0},{520,0},{560,0},{600,0},{640,0},{680,0},{720,0},{760,0},
+    {20,20},{60,0},{80,0},{120,0},{160,0},{200,0},{240,0},{280,0},{320,0},{360,0},{400,0},{440,0},{480,0},{520,0},{560,0},{600,0},{640,0},{680,0},{720,0},{760,0},
     
     {0,40},{760,40},
     
@@ -76,6 +76,8 @@ int allWallPositions [157][2] = {
     
     
 };
+
+int flag ;
 
 // some 3d array to define all the wall coordinates  that may come in use in future if the above array is not working ...
 //the third dimension is the row number
@@ -129,6 +131,10 @@ float coordinate_y_up;
 float coordinate_y_down;
 float coordinate_x_left;
 float coordinate_x_right;
+float coordinate_x_up;
+float coordinate_x_down;
+float coordinate_y_left;
+float coordinate_y_right;
 
 float enemy_position_x;
 float enemy_position_y;
@@ -388,11 +394,34 @@ void testApp::update(){
     }
     
     
+    /*  for (y_checker_1 = 0; y_checker_1 < 157; y_checker_1++)
+     {
+     
+     if(((allWallPositions[y_checker_1][1] + 20) == coordinate_y_up) && ((allWallPositions[y_checker_1][0]+20) ==pacman_position_x))
+     {
+     flag =1;
+     ofDrawBitmapString("unmatched",830,140);
+     
+     }
+     else
+     {
+     
+     ofDrawBitmapString("matched", 830,140);
+     
+     flag = 0;
+     
+     
+     }
+     }*/
+    
     coordinate_x_left = pacman_position_x - 40;
     coordinate_x_right = pacman_position_x  + 40;
     coordinate_y_down = pacman_position_y + 40;
     coordinate_y_up = pacman_position_y -40;
-    
+    coordinate_x_up = pacman_position_x;
+    coordinate_x_down= pacman_position_x;
+    coordinate_y_left = pacman_position_y;
+    coordinate_y_right = pacman_position_y;
     
     
     
@@ -498,9 +527,24 @@ void testApp::draw(){
 	ofRect(320,320,160,40);
 	ofRect(320,280,40,40);
 	ofRect(440,280,40,40);
-	//------for recording frames per second---------------------------
-	ofDrawBitmapString(ofToString(ofGetFrameRate())+"fps", 400, 300);
+	//------for recording frames per second///----//debug area ---------------------------
+    ofDrawBitmapString("####################", 830, 20);
+    ofDrawBitmapString("##   debug area   ##", 830, 35);
+    ofDrawBitmapString("####################", 830, 50);
     
+    
+    
+	ofDrawBitmapString(ofToString(ofGetFrameRate())+" fps", 830, 75);
+    ofDrawBitmapString(ofToString(pacman_position_x)+" pacmam_X_co-ordinate",830,90);
+    ofDrawBitmapString(ofToString(pacman_position_y)+" pacman_Y_co-ordinate",830,105);
+    ofDrawBitmapString(ofToString(coordinate_y_up) +" upper_y_pacman", 830,120);
+    ofDrawBitmapString(ofToString(coordinate_x_up) +" upper_x_pacman", 830,135);
+    ofDrawBitmapString(ofToString(coordinate_y_right) +" right_y_pacman",830,150);
+    ofDrawBitmapString(ofToString(flag) +" flag",830,165);
+    
+    // ofDrawBitmapString(ofToString(allWallPositions[y_checker_1][1]), 830,135);
+    
+    // ofDrawBitmapString(ofToString(coordinate_y_up), 760,280);
     //----------the enemy-----------------------------------------
 	ofSetColor(128,128,0);
 	ofFill();
@@ -634,7 +678,7 @@ void testApp::keyPressed(int key)
             
             if(CounterForGameOver == 3)
             {
-                cout<<"gameover";
+                ofDrawBitmapString("GAME OVER", 840, 300);;
                 sleep(1.5);
                 abort();
             }
@@ -690,41 +734,100 @@ void testApp::keyPressed(int key)
      
      */
     
-    if((key == 'w') || (key == 'W'))
-    {
-        
-        if(pacman_position_y < -40)
-        {
-            pacman_position_y=pacman_position_y+640;
-        }
-        
-        else
-        {
-            
-            for (y_checker_1 = 0; y_checker_1 < 157; y_checker_1++)
-            {
-                
-                if((allWallPositions[y_checker_1][1] + 20 != coordinate_y_up) && (allWallPositions[y_checker_1][0] !=pacman_position_x))
-                {
-                    pacman_position_y = pacman_position_y -40;
-                    
-                }
-                else
-                {
-                    pacman_position_y = pacman_position_y +40;
-                    pacman_position_y = pacman_position_y -40;
-                    //pacman_position_y = pacman_position_y +0; replacement for the above 2 lines of code perhaps ? ask !?
-                    //the outer for loop is not working .......................!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                    
-                }
-                
-            }
-            
-            //pacman_position_y = pacman_position_y -40;
-        }
-        
-        
-    }
+    /*if((key == 'w') || (key == 'W'))
+	 {
+     
+     if(pacman_position_y < -40)
+     {
+     pacman_position_y=pacman_position_y+640;
+     }
+     
+     else
+     {
+     
+     for (y_checker_1 = 0; y_checker_1 < 157; y_checker_1++)
+     {
+     
+     if(((allWallPositions[y_checker_1][1] + 20) == coordinate_y_up) && ((allWallPositions[y_checker_1][0]+20) ==pacman_position_x))
+     {
+     *flagp =1;
+     ofDrawBitmapString("unmatched",830,140);
+     
+     }
+     else
+     {
+     
+     ofDrawBitmapString("matched", 830,140);
+     
+     *flagp = 0;
+     
+     
+     }
+     }
+     if(*flagp ==0)
+     {
+     
+     pacman_position_y = pacman_position_y -40;
+     
+     }
+     else
+     if (*flagp == 1) {
+     pacman_position_y = pacman_position_y +0;
+     }
+     
+     /*  else
+     {
+     pacman_position_y = pacman_position_y +40;
+     pacman_position_y = pacman_position_y -40;
+     //pacman_position_y = pacman_position_y +0; replacement for the above 2 lines of code perhaps ? ask !?
+     //the outer for loop is not working .......................!!!!!!!!!!!!!!!!!!!!!!!!!!!
+     
+     }
+     
+     
+     
+     //pacman_position_y = pacman_position_y -40;
+     }
+     
+     
+     }*/
+    
+    
+    /*if((key == 'w') || (key == 'W'))
+     
+     {
+     if(pacman_position_y < -40)
+     {
+     pacman_position_y=pacman_position_y+640;
+     }
+     else
+     {
+     for(int impi = 0;impi<157;impi++)
+     {
+     
+     
+     if(allWallPositions[impi][1] +20 !=  coordinate_y_up)
+     
+     {
+     flag = 0;
+     }
+     else{
+     flag = 1;
+     }
+     
+     }
+     
+     if(flag == 0)
+     {
+     pacman_position_y = pacman_position_y -40;
+     }
+     }
+     }*/
+    
+    
+    
+    
+    
     
     if((key =='s') || (key =='S')) // 's' key
     {
