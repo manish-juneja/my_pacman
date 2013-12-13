@@ -5,10 +5,6 @@
 #include "testApp.h"
 
 
-// declaring the vector that might do the job of doing the dynamic array but not used till now ........
-
-vector<vector<vector<float> > > phantom_energy (157, vector<vector<float> > (20, vector<float> (2)));
-
 //all the positions that the fruits may be placed in ,that is the black spaces....a random generator is going to pick on of these coordinates and place the fruit there
 int allFruitPosition[143][2] = {{40,40},{80,40},{120,40},{160,40},{200,40},{240,40},{280,40},{320,40},{360,40},{400,40},{440,40},
     {480,40},{520,40},{560,40},{600,40},{640,40},{680,40},{720,40},
@@ -82,49 +78,9 @@ int allWallPositions [157][2] = {
 };
 
 int flag ;
-
-// some 3d array to define all the wall coordinates  that may come in use in future if the above array is not working ...
-//the third dimension is the row number
-//there are total 153X2 co-ordinates that are arranged in X x Y x Z
-//The z co-ordinate can hold upto 20 values as u imagined and u wanted to make it dynamic so that you can store values 2 to 20 as desired
-
-int xxx[15][20][3] = {
-    
-    { {0,0,0},{40,0,0},{80,0,0},{120,0,0},{160,0,0},{200,0,0},{240,0,0},{280,0,0},{320,0,0},{360,0,0},{400,0,0},{440,0,0},{480,0,0},{520,0,0},{560,0,0},{600,0,0},{640,0,0},{680,0,0},{720,0,0},{760,0,0}},
-    
-    { {0,1,40},{760,1,40}},
-    
-    {{0,2,80},{120,2,80},{240,2,80},{320,2,80},{360,2,80},{400,2,80},{440,2,80},{520,2,80},{640,2,80},{760,2,80}},
-    
-    {{0,3,120},{80,3,120},{120,3,120},{160,3,120},{240,3,120},{360,3,120},{400,3,120},{520,3,120},{600,3,120},{640,3,120},{680,3,120},{760,3,120}},
-    
-    {{0,4,160},{240,4,160},{280,4,160},{360,4,160},{400,4,160},{480,4,160},{520,4,160},{760,4,160}},
-    
-    {{0,5,200},{40,5,200},{80,5,200},{120,5,200},{160,5,200},{600,5,200},{640,5,200},{680,5,200},{720,5,200},{760,5,200}},
-    
-    {{0,6,240},{40,6,240},{80,6,240},{120,6,240},{160,6,240},{240,6,240},{320,6,240},{360,6,240},{440,6,240},{520,6,240},{600,6,240},{640,6,240},{680,6,240},{720,6,240},{760,6,240}},
-    
-    {{320,7,280},{440,7,280}},
-    
-    {{0,8,320},{40,8,320},{80,8,320},{120,8,320},{160,8,320},{240,8,320},{320,8,320},{360,8,320},{400,8,320},{440,8,320},{520,8,320},{600,8,320},{640,8,320},{680,8,320},{720,8,320},{760,8,320}},
-    
-    {{0,9,360},{40,9,360},{80,9,360},{120,9,360},{160,9,360},{600,9,360},{640,9,360},{680,9,360},{720,360},{760,360}},
-    
-    {{0,10,400},{240,10,400},{280,10,400},{360,10,400},{400,10,400},{480,10,400},{520,10,400},{760,10,400}},
-    
-    {{0,11,440},{80,11,440},{120,11,440},{160,11,440},{240,11,440},{360,11,440},{400,11,440},{520,11,440},{600,11,440},{640,11,440},{680,11,440},{760,11,440}},
-    
-    {{0,12,480},{120,12,480},{240,12,480},{320,12,480},{360,12,480},{400,12,480},{440,12,480},{520,12,480},{640,12,480},{760,480}},
-    
-    {{0,13,520},{760,13,520}},
-    
-    {{0,14,560},{40,14,560},{80,14,560},{120,14,560},{160,14,560},{200,14,560},{240,14,560},{280,14,560},{320,14,560},{360,14,560},{400,14,560},{440,14,560},{480,14,560},{520,14,560},{560,14,560},{600,14,560},{640,14,560},{680,14,560},{720,14,560},{760,14,560}},
-    
-    
-};
-
-
-
+int flag2 ;
+int points;
+int point[5]={1,1,1,1,1};
 
 
 float pacman_position_x;
@@ -161,8 +117,7 @@ int x_checker_2;
 int y_checker_1;
 int y_checker_2;
 
-int fruit_apple_position_x[15]={82,122,162,202,242,282,322,362,402,442,482,522,562,602};
-int fruit_apple_position_y[15]={82,122,162,202,242,282,322,362,402,442,482,522,562,602};
+
 int fruit_apple_random_position_x;    //----random position in x co-ordinate--------------
 int fruit_apple_random_position_y;    //----random position in y co-ordinate--------------
 int randindex_apple_x;   //----variable used to store random number for initializing in x co-ordinate-------------
@@ -170,8 +125,7 @@ int randindex_apple_y;   //----variable used to store random number for initiali
 int fr_apple_middle_x;   //----for calculating distance between the apple and the pacman for collison----
 int fr_apple_middle_y;   //----same as above-----------------
 
-int fruit_banana_position_x[15]={82,122,162,202,242,282,322,362,402,442,482,522,562,602};
-int fruit_banana_position_y[15]={82,122,162,202,242,282,322,362,402,442,482,522,562,602};
+
 int fruit_banana_random_position_x;
 int fruit_banana_random_position_y;
 int randindex_banana_x;
@@ -179,8 +133,7 @@ int randindex_banana_y;
 int fr_banana_middle_x;
 int fr_banana_middle_y;
 
-int fruit_pear_position_x[15]={82,122,162,202,242,282,322,362,402,442,482,522,562,602};
-int fruit_pear_position_y[15]={82,122,162,202,242,282,322,362,402,442,482,522,562,602};
+
 int fruit_pear_random_position_x;
 int fruit_pear_random_position_y;
 int randindex_pear_x;
@@ -188,8 +141,7 @@ int randindex_pear_y;
 int fr_pear_middle_x;
 int fr_pear_middle_y;
 
-int fruit_cherry_position_x[15]={82,122,162,202,242,282,322,362,402,442,482,522,562,602};
-int fruit_cherry_position_y[15]={82,122,162,202,242,282,322,362,402,442,482,522,562,602};
+
 int fruit_cherry_random_position_x;
 int fruit_cherry_random_position_y;
 int randindex_cherry_x;
@@ -197,8 +149,6 @@ int randindex_cherry_y;
 int fr_cherry_middle_x;
 int fr_cherry_middle_y;
 
-int fruit_strawberry_position_x[15]={82,122,162,202,242,282,322,362,402,442,482,522,562,602};
-int fruit_strawberry_position_y[15]={82,122,162,202,242,282,322,362,402,442,482,522,562,602};
 int fruit_strawberry_random_position_x;
 int fruit_strawberry_random_position_y;
 int randindex_strawberry_x;
@@ -218,38 +168,11 @@ int choice;
 //--------------------------------------------------------------
 void testApp::setup(){
     
+    
+    points = 0;
 	fruit_width=40;
 	fruit_height=40;
     
-    
-	//-------randomizing the fruit positions------------------
-    /*	 randindex_apple_x = rand() % 14; //---taking a random number from 0-15 and storing it in randindex_apple_x----------
-     fruit_apple_random_position_x = fruit_apple_position_x[randindex_apple_x];
-	 randindex_apple_y = rand() % 14;
-     fruit_apple_random_position_y = fruit_apple_position_y[randindex_apple_y];
-     
-     
-	 randindex_banana_x = rand() % 14;
-     fruit_banana_random_position_x = fruit_banana_position_x[randindex_banana_x];
-	 randindex_banana_y = rand() % 14;
-     fruit_banana_random_position_y = fruit_banana_position_y[randindex_banana_y];
-     
-     
-     randindex_pear_x = rand() % 14;
-     fruit_pear_random_position_x = fruit_pear_position_x[randindex_pear_x];
-	 randindex_pear_y = rand() % 14;
-     fruit_pear_random_position_y = fruit_pear_position_y[randindex_pear_y];
-     
-     randindex_cherry_x = rand() % 14;
-     fruit_cherry_random_position_x = fruit_cherry_position_x[randindex_cherry_x];
-	 randindex_cherry_y = rand() % 14;
-     fruit_cherry_random_position_y = fruit_cherry_position_y[randindex_cherry_y];
-     
-	 randindex_strawberry_x = rand() % 14;
-     fruit_strawberry_random_position_x = fruit_strawberry_position_x[randindex_strawberry_x];
-	 randindex_strawberry_y = rand() % 14;
-     fruit_strawberry_random_position_y = fruit_strawberry_position_y[randindex_strawberry_y];
-     */
     
     randindex_apple_x = rand() % 143; //---taking a random number from 0-153 and storing it in randindex_apple_x----------
 	fruit_apple_random_position_x = allFruitPosition[randindex_apple_x][0];
@@ -341,14 +264,6 @@ void testApp::setup(){
     
 	sleep(5);
     
-	
-	
-	/*if((pacman_position_x == enemy_position_x+12.5) || ( pacman_position_y+7.5 == enemy_position_y) || (pacman_position_y-7.5 == enemy_position_y+25)  || (pacman_position_x -7.5 == enemy_position_x+25) || (pacman_position_y == enemy_position_y+12.5) || (pacman_position_x+7.5 == enemy_position_x) || ( pacman_position_y ==enemy_position_y+12.5)  )
-     {
-     pacman_position_x = 400;
-     pacman_position_y = 500;
-     }
-     */
     
 	ofBackground(0,0,0);
 	ofEnableSmoothing();
@@ -392,44 +307,37 @@ void testApp::update(){
     if(((pacman_position_x - fr_apple_middle_x)<=30) && ((pacman_position_y - fr_apple_middle_y)<=30) && ((pacman_position_x - fr_apple_middle_x)>= -30) && ((pacman_position_y - fr_apple_middle_y)>= -30))
     {
         fruit_apple.clear();
+        points = points + point[0];
+        point[0]=0;
     }
     if(((pacman_position_x - fr_pear_middle_x)<=30) && ((pacman_position_y - fr_pear_middle_y)<=30) && ((pacman_position_x - fr_pear_middle_x)>= -30) && ((pacman_position_y - fr_pear_middle_y)>= -30))
     {
         fruit_pear.clear();
+        points = points + point[1];
+        point[1] =0;
+        
     }
     if(((pacman_position_x - fr_banana_middle_x)<=30) && ((pacman_position_y - fr_banana_middle_y)<=30) && ((pacman_position_x - fr_banana_middle_x)>= -30) && ((pacman_position_y - fr_banana_middle_y)>= -30))
     {
         fruit_banana.clear();
+        points = points + point[2];
+        point[2] =0;
     }
     if(((pacman_position_x - fr_cherry_middle_x)<=30) && ((pacman_position_y - fr_cherry_middle_y)<=30) && ((pacman_position_x - fr_cherry_middle_x)>= -30) && ((pacman_position_y - fr_cherry_middle_y)>= -30))
     {
         fruit_cherry.clear();
+        points = points + point[3];
+        point[3] =0;
     }
     if(((pacman_position_x - fr_strawberry_middle_x)<=30) && ((pacman_position_y - fr_strawberry_middle_y)<=30) && ((pacman_position_x - fr_strawberry_middle_x)>= -30) && ((pacman_position_y - fr_strawberry_middle_y)>= -30))
     {
         fruit_strawberry.clear();
+        points =points + point[4];
+        point[4] =0;
     }
     
     
-    /*  for (y_checker_1 = 0; y_checker_1 < 157; y_checker_1++)
-     {
-     
-     if(((allWallPositions[y_checker_1][1] + 20) == coordinate_y_up) && ((allWallPositions[y_checker_1][0]+20) ==pacman_position_x))
-     {
-     flag =1;
-     ofDrawBitmapString("unmatched",830,140);
-     
-     }
-     else
-     {
-     
-     ofDrawBitmapString("matched", 830,140);
-     
-     flag = 0;
-     
-     
-     }
-     }*/
+    //------------updating and getting information about all the posiitons of all blocks around pacman------------
     
     coordinate_x_left   = pacman_position_x - 40;
     coordinate_x_right  = pacman_position_x + 40;
@@ -440,9 +348,11 @@ void testApp::update(){
     coordinate_y_left   = pacman_position_y;
     coordinate_y_right  = pacman_position_y;
     
-    
+    //-------------calculating the middle position of the enemy for collision detection -----------------------------
     enemy_position_x_middle = enemy_position_x + 20;
     enemy_position_y_middle = enemy_position_y + 20;
+    
+    //-------------enemy collision detection with wall---------------------------------------------------------------
     
     enemy_x_up    =   enemy_position_x_middle;
     enemy_x_down  =   enemy_position_x_middle;
@@ -453,8 +363,15 @@ void testApp::update(){
     enemy_y_up    =   enemy_position_y_middle - 40;
     enemy_y_down  =   enemy_position_y_middle + 40;
     
+    //-------------for the choice of the random enemy movement------------------------------------
     
     choice = ofRandom(0,4);
+    
+    //---------for deciding when pacman will be out-----------------------------------------------
+    if(points == 5)
+    {
+        abort();
+    }
     
 }
 
@@ -559,23 +476,26 @@ void testApp::draw(){
 	ofRect(320,280,40,40);
 	ofRect(440,280,40,40);
 	//------for recording frames per second///----//debug area ---------------------------
-    ofDrawBitmapString("####################", 830, 20);
-    ofDrawBitmapString("##   debug area   ##", 830, 35);
-    ofDrawBitmapString("####################", 830, 50);
-    
-    
-    
-	ofDrawBitmapString(ofToString(ofGetFrameRate())   + " fps", 830, 75);
-    ofDrawBitmapString(ofToString(pacman_position_x)  + " pacmam_X_co-ordinate", 830, 90);
-    ofDrawBitmapString(ofToString(pacman_position_y)  + " pacman_Y_co-ordinate", 830, 105);
-    ofDrawBitmapString(ofToString(coordinate_y_up)    + " upper_y_pacman", 830, 120);
-    ofDrawBitmapString(ofToString(coordinate_x_up)    + " upper_x_pacman", 830, 135);
-    ofDrawBitmapString(ofToString(coordinate_y_right) + " right_y_pacman", 830, 150);
-    ofDrawBitmapString(ofToString(flag)               + " flag", 830, 165);
-    
-    // ofDrawBitmapString(ofToString(allWallPositions[y_checker_1][1]), 830,135);
-    
-    // ofDrawBitmapString(ofToString(coordinate_y_up), 760,280);
+    /*
+     
+     
+     ofDrawBitmapString("####################", 830, 20);
+     ofDrawBitmapString("##   debug area   ##", 830, 35);
+     ofDrawBitmapString("####################", 830, 50);
+     
+     
+     
+     ofDrawBitmapString(ofToString(ofGetFrameRate())   + " fps", 830, 75);
+     ofDrawBitmapString(ofToString(pacman_position_x)  + " pacmam_X_co-ordinate", 830, 90);
+     ofDrawBitmapString(ofToString(pacman_position_y)  + " pacman_Y_co-ordinate", 830, 105);
+     ofDrawBitmapString(ofToString(coordinate_y_up)    + " upper_y_pacman", 830, 120);
+     ofDrawBitmapString(ofToString(coordinate_x_up)    + " upper_x_pacman", 830, 135);
+     ofDrawBitmapString(ofToString(coordinate_y_right) + " right_y_pacman", 830, 150);
+     ofDrawBitmapString(ofToString(flag)               + " flag", 830, 165);
+     ofDrawBitmapString(ofToString(points)             + " points", 830, 180);
+     
+     
+     */
     
     //----------the enemy-----------------------------------------
     
@@ -589,7 +509,7 @@ void testApp::draw(){
 	ofFill();
 	ofCircle(pacman_position_x, pacman_position_y ,pacman_radius);
     
-	///------------------------copied code---
+    // points deciding the x and y coordinate origin of squares---------
     
     for (int i = 1; i < 20; i++) {
 		for (int j = 1; j < 15; j++) {
@@ -664,28 +584,159 @@ void testApp::draw(){
      */
     //--------------------------------------------------
     
+    //------drawing fruits in their their random positions--------------------------------------------------------
+    
     fruit_apple.     draw (fruit_apple_random_position_x, fruit_apple_random_position_y, fruit_width,fruit_height);
     fruit_banana.    draw (fruit_banana_random_position_x, fruit_banana_random_position_y, fruit_width,fruit_height);
     fruit_pear.      draw (fruit_pear_random_position_x, fruit_pear_random_position_y, fruit_width,fruit_height);
     fruit_cherry.    draw (fruit_cherry_random_position_x, fruit_cherry_random_position_y, fruit_width,fruit_height);
     fruit_strawberry.draw (fruit_strawberry_random_position_x, fruit_strawberry_random_position_y, fruit_width,fruit_height);
     
-    /*if(choice == 0)
-     {
-     enemy_position_x = enemy_position_x +40;
-     }
-     else if (choice == 1)
-     {
-     enemy_position_x = enemy_position_x -40;
-     }
-     else if (choice == 2)
-     {
-     enemy_position_y = enemy_position_y -40;
-     }
-     else if (choice == 3)
-     {
-     enemy_position_y =enemy_position_y +40;
-     }*/
+    
+    // random choices and their impact on the movement of the enemy------------------------------------------------
+    
+    if(choice == 2)
+    {
+        if(enemy_position_x > 810)
+        {
+            enemy_position_x = enemy_position_x -840;
+        }
+        else
+        {
+            
+            
+            flag2 = 0;
+            
+            for(int i = 0;i<157;i++)
+            {
+                
+                
+                
+                if((allWallPositions[i][1]   ==  enemy_y_right) && (allWallPositions[i][0]   == enemy_x_right) )
+                    
+                {
+                    flag2 = 1;
+                    break;
+                }
+            }
+        }
+        
+        
+        if(flag == 0)
+        {
+            enemy_position_x = enemy_position_x +40;
+        }
+        
+        
+    }
+    
+    
+    
+    else if (choice == 0)
+    {
+        if(enemy_position_x < -40)
+        {
+            enemy_position_x = enemy_position_x +840;
+        }
+        else
+        {
+            
+            
+            flag2 = 0;
+            
+            for(int i = 0;i<157;i++)
+            {
+                
+                
+                
+                if((allWallPositions[i][1]   ==  enemy_y_left) && (allWallPositions[i][0]   == enemy_x_left) )
+                    
+                {
+                    flag2 = 1;
+                    break;
+                }
+            }
+        }
+        
+        
+        if(flag2 == 0)
+        {
+            enemy_position_x = enemy_position_x -40;
+        }
+    }
+    
+    
+    else if (choice == 1)
+    {
+        if(enemy_position_y < -40)
+        {
+            enemy_position_y = enemy_position_y +640;
+        }
+        else
+        {
+            
+            
+            flag2 = 0;
+            
+            for(int i = 0;i<157;i++)
+            {
+                
+                
+                
+                if((allWallPositions[i][1]   ==  enemy_y_up) && (allWallPositions[i][0]   == enemy_x_up) )
+                    
+                {
+                    flag2 = 1; // wall
+                    break;
+                }
+            }
+        }
+        
+        
+        if(flag2 == 0)
+        {
+            enemy_position_y = enemy_position_y -40;
+        }
+        
+    }
+    
+    
+    
+    else if (choice == 3)
+    {
+        
+        if(enemy_position_y > 640)
+        {
+            enemy_position_y = enemy_position_y -640;
+        }
+        else
+        {
+            
+            
+            flag2 = 0;
+            
+            for(int i = 0;i<157;i++)
+            {
+                
+                
+                
+                if((allWallPositions[i][1]   ==  enemy_y_down) && (allWallPositions[i][0]   == enemy_x_down) )
+                    
+                {
+                    flag2 = 1; // wall
+                    break;
+                }
+            }
+        }
+        
+        
+        
+        if(flag2 == 0)
+        {
+            enemy_position_y = enemy_position_y +40;
+        }
+        
+    }
     
     
 }
@@ -700,15 +751,7 @@ void testApp::keyPressed(int key)
     if((key == 'w') || (key == 'W') || (key == 's') || (key == 'S') || (key == 'A') || (key == 'a') || (key == 'd') || (key == 'D'))
 		
     {
-		/*	if((pacman_position_x == enemy_position_x+12.5) || ( pacman_position_y+7.5 == enemy_position_y) || (pacman_position_y-7.5 == enemy_position_y+25)  || (pacman_position_x -7.5 == enemy_position_x+25) || (pacman_position_y == enemy_position_y+12.5) || (pacman_position_x+7.5 == enemy_position_x) || ( pacman_position_y ==enemy_position_y+12.5)  )
-         {
-         pacman_position_x = 400;
-         pacman_position_y = 500;
-         }
-         
-         */		//--- loop for simple collision detetction---------------------
         
-        // if(((pacman_position_x+15 == enemy_position_x) && ( pacman_position_y == enemy_position_y+15)) || ((pacman_position_x-15 == enemy_position_x+30) && ( pacman_position_y == enemy_position_y+15)) || ((pacman_position_x == enemy_position_x+15) && ( pacman_position_y-15 == enemy_position_y+30)) || ((pacman_position_x == enemy_position_x+15) && ( pacman_position_y+15 == enemy_position_y))   )
         
         if(((pacman_position_x - enemy_position_x_middle)<=41) && ((pacman_position_y - enemy_position_y_middle)<=41) && ((pacman_position_x - enemy_position_x_middle)>= -41) && ((pacman_position_y - enemy_position_y_middle)>= -41))
             
@@ -748,7 +791,7 @@ void testApp::keyPressed(int key)
         //-- sounds made by pacman while moving --- ------------------------
         
         mySoundMovePacman.getIsPlaying();
-        mySoundMovePacman.setMultiPlay(false);//Returns false   MAN
+        mySoundMovePacman.setMultiPlay(false);//Returns false
         mySoundMovePacman.play();
         mySoundMovePacman.play(); ////Adds new copy of sound to channel and plays over currently playing sound
         mySoundMovePacman.getSpeed();
@@ -772,120 +815,11 @@ void testApp::keyPressed(int key)
         mySoundCollideFruit.getIsPlaying();
     }
     
-    /*            if(((pacman_position_x - fr_apple_middle_x)<=30) && ((pacman_position_y - fr_apple_middle_y)<=30) && ((pacman_position_x - fr_apple_middle_x)>= -30) && ((pacman_position_y - fr_apple_middle_y)>= -30))
-     {
-     fruit_apple.clear();
-     }
-     if(((pacman_position_x - fr_pear_middle_x)<=30) && ((pacman_position_y - fr_pear_middle_y)<=30) && ((pacman_position_x - fr_pear_middle_x)>= -30) && ((pacman_position_y - fr_pear_middle_y)>= -30))
-     {
-     fruit_pear.clear();
-     }
-     if(((pacman_position_x - fr_banana_middle_x)<=30) && ((pacman_position_y - fr_banana_middle_y)<=30) && ((pacman_position_x - fr_banana_middle_x)>= -30) && ((pacman_position_y - fr_banana_middle_y)>= -30))
-     {
-     fruit_banana.clear();
-     }
-     if(((pacman_position_x - fr_cherry_middle_x)<=30) && ((pacman_position_y - fr_cherry_middle_y)<=30) && ((pacman_position_x - fr_cherry_middle_x)>= -30) && ((pacman_position_y - fr_cherry_middle_y)>= -30))
-     {
-     fruit_cherry.clear();
-     }
-     if(((pacman_position_x - fr_strawberry_middle_x)<=30) && ((pacman_position_y - fr_strawberry_middle_y)<=30) && ((pacman_position_x - fr_strawberry_middle_x)>= -30) && ((pacman_position_y - fr_strawberry_middle_y)>= -30))
-     {
-     fruit_strawberry.clear();
-     }
-     
-     
-     */
-    
-    /*if((key == 'w') || (key == 'W'))
-	 {
-     
-     if(pacman_position_y < -40)
-     {
-     pacman_position_y=pacman_position_y+640;
-     }
-     
-     else
-     {
-     
-     for (y_checker_1 = 0; y_checker_1 < 157; y_checker_1++)
-     {
-     
-     if(((allWallPositions[y_checker_1][1] + 20) == coordinate_y_up) && ((allWallPositions[y_checker_1][0]+20) ==pacman_position_x))
-     {
-     *flagp =1;
-     ofDrawBitmapString("unmatched",830,140);
-     
-     }
-     else
-     {
-     
-     ofDrawBitmapString("matched", 830,140);
-     
-     *flagp = 0;
-     
-     
-     }
-     }
-     if(*flagp ==0)
-     {
-     
-     pacman_position_y = pacman_position_y -40;
-     
-     }
-     else
-     if (*flagp == 1) {
-     pacman_position_y = pacman_position_y +0;
-     }
-     
-     /*  else
-     {
-     pacman_position_y = pacman_position_y +40;
-     pacman_position_y = pacman_position_y -40;
-     //pacman_position_y = pacman_position_y +0; replacement for the above 2 lines of code perhaps ? ask !?
-     //the outer for loop is not working .......................!!!!!!!!!!!!!!!!!!!!!!!!!!!
-     
-     }
-     
-     
-     
-     //pacman_position_y = pacman_position_y -40;
-     }
-     
-     
-     }*/
+    //for checking the position of pacman if pacman goes beyond the screen-----------------
+    //also the condition for collision detection-------------------------------------------
     
     
-    /*if((key == 'w') || (key == 'W'))
-     
-     {
-     if(pacman_position_y < -40)
-     {
-     pacman_position_y=pacman_position_y+640;
-     }
-     else
-     {
-     for(int impi = 0;impi<157;impi++)
-     {
-     
-     
-     if(allWallPositions[impi][1] +20 !=  coordinate_y_up)
-     
-     {
-     flag = 0;
-     }
-     else{
-     flag = 1;
-     }
-     
-     }
-     
-     if(flag == 0)
-     {
-     pacman_position_y = pacman_position_y -40;
-     }
-     }
-     }*/
-    
+    //the default buttons for going up is "w"----------------------------------------------
     if((key == 'w') || (key == 'W'))
     {
         if(pacman_position_y < -40)
@@ -919,6 +853,8 @@ void testApp::keyPressed(int key)
     }
     
     
+    
+    //the default button for going down is "s"-------------------------------
     
     
     if((key =='s') || (key =='S')) // 's' key
@@ -958,6 +894,7 @@ void testApp::keyPressed(int key)
     }
     
     
+    //the default button for going  right is d -----------------------------------------
     
     
     if((key =='d') || (key =='D')) // 'd' key
@@ -970,7 +907,7 @@ void testApp::keyPressed(int key)
         {
             
             
-            flag = 0;
+            flag = 0;// condition for no wall
             
             for(int i = 0;i<157;i++)
             {
@@ -980,10 +917,10 @@ void testApp::keyPressed(int key)
                 if((allWallPositions[i][1]   ==  coordinate_y_right) && (allWallPositions[i][0]   == coordinate_x_right) )
                     
                 {
-                    flag = 1; // wall
+                    flag = 1; // condition for wall ahead
                     break;
                 }
-            }//pacman_position_x = pacman_position_x + 40;
+            }
         }
         
         
@@ -992,6 +929,9 @@ void testApp::keyPressed(int key)
             pacman_position_x = pacman_position_x +40;
         }
     }
+    
+    //the default button for going right is "a"--------------------------------
+    
     
     if((key=='a') || (key == 'A')) // 'a' key
     {
@@ -1014,9 +954,9 @@ void testApp::keyPressed(int key)
                     flag = 1; // wall
                     break;
                 }
-            }//pacman_position_x = pacman_position_x + 40;
+            }
             
-            //pacman_position_x = pacman_position_x - 40;
+            
         }
         if(flag == 0)
         {
